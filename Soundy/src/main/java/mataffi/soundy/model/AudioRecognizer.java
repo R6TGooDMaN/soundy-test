@@ -99,8 +99,8 @@ public class AudioRecognizer {
 
 		System.out.println("Press ENTER key to stop listening...");
 		try {
-			System.in.read();
-		} catch (IOException ex) {
+			Thread.sleep(20000);
+		} catch (InterruptedException ex) {
 			Logger.getLogger(AudioRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		this.running = false;
