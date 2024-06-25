@@ -103,7 +103,7 @@ public class AudioRecognizer {
 
 		System.out.println("Press ENTER key to stop listening...");
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 		} catch (InterruptedException ex) {
 			Logger.getLogger(AudioRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 		}

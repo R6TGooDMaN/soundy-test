@@ -29,13 +29,14 @@ public class MainController {
         return "SearchPage";
     }
 
-    @GetMapping("/add")
-    public String addNewSong(){
-        return "AdditionPage";
-    }
+//    @GetMapping("/add")
+//    public String addNewSong(){
+//        return "AdditionPage";
+//    }
     @PostMapping ("/add")
-    public String addSound(@RequestParam("name") String name) throws LineUnavailableException{
-        service.addSound(name);
-        return "AdditionPage";
+    @ResponseBody
+    public String addSound(@RequestParam String title) throws LineUnavailableException{
+        return service.addSound(title);
     }
 }
+
