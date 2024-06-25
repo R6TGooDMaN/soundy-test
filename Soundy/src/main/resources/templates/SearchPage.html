@@ -11,7 +11,10 @@
 <header>
 </header>
 <body>
-
+<form  th:action="@{/Soundy/matching}"  method="post">
+    <p><input type="submit" value="Match"></p>
+</form>
+<span th:text="${song!=null ? song:'Трек не найден'}" ></span>
 
 </body>
 

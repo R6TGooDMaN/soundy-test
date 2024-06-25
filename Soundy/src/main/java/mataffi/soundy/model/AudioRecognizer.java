@@ -7,6 +7,7 @@ import mataffi.soundy.config.KeyPoint;
 import mataffi.soundy.utilities.Serialization;
 import mataffi.soundy.utilities.Spectrum;
 import mataffi.soundy.utilities.HashingFunctions;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
@@ -25,7 +26,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 @Component
 @AllArgsConstructor
-
 public class AudioRecognizer {
 
 	// The main hashtable required in our interpretation of the algorithm to
@@ -34,6 +34,8 @@ public class AudioRecognizer {
 
 	// Variable to stop/start the listening loop
 	public boolean running;
+
+	public String bestSong;
 
 	// Constructor
 	public AudioRecognizer() {
@@ -55,8 +57,8 @@ public class AudioRecognizer {
 		// InputStream (using TargetDataLine) in another thread      
 		DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormat);
 		final TargetDataLine line = (TargetDataLine) AudioSystem.getLine(info);
-		line.open(audioFormat);
-		line.start();
+			line.open(audioFormat);
+			line.start();
 
 		Thread listeningThread = new Thread(new Runnable() {
 
@@ -82,7 +84,7 @@ public class AudioRecognizer {
 					// Compute magnitude spectrum
 					double [][] magnitudeSpectrum = Spectrum.compute(audioTimeDomain);
 					// Determine the shazam action (add or matching) and perform it
-					shazamAction(magnitudeSpectrum, songId, isMatching);                    
+					shazamAction(magnitudeSpectrum, songId, isMatching);
 					// Close stream
 					outStream.close();                    
 					// Serialize again the hashMapSongRepository (our song repository)
@@ -107,7 +109,7 @@ public class AudioRecognizer {
 	}   
 
 	// Determine the shazam action (add or matching a song) and perform it 
-	private void shazamAction(double[][] magnitudeSpectrum, String songId, boolean isMatching) {  
+	private void shazamAction(double[][] magnitudeSpectrum, String songId, boolean isMatching) {
 
 		// Hash table used for matching (Map<songId, Map<offset,count>>)
 		Map<String, Map<Integer,Integer>> matchMap = 
@@ -234,10 +236,11 @@ public class AudioRecognizer {
 				if(counter > bestCounter) {
 					//We saving the possible best song
 					bestCounter = counter;
-					bestSong = song;
+					this.bestSong=bestSong = song;
 				}
 			}
 		}
+
 		// Print the songId string which represents the best matching     
 		System.out.println("Best song: " + bestSong);
 	}
