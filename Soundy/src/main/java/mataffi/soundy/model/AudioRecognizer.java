@@ -27,6 +27,13 @@ import javax.sound.sampled.TargetDataLine;
 @Component
 @AllArgsConstructor
 public class AudioRecognizer {
+	// Fill AudioFormat with the recording we want for settings
+	AudioFormat audioFormat = new AudioFormat(AudioParams.sampleRate,
+			AudioParams.sampleSizeInBits, AudioParams.channels,
+			AudioParams.signed, AudioParams.bigEndian);
+
+	// Required to get audio directly from the microphone and process it as an
+	// InputStream (using TargetDataLine) in another thread
 
 	// The main hashtable required in our interpretation of the algorithm to
 	// store the song repository
@@ -39,24 +46,19 @@ public class AudioRecognizer {
 
 	// Constructor
 	public AudioRecognizer() {
-
 		// Deserialize the hash table hashMapSongRepository (our song repository)
 		this.hashMapSongRepository = Serialization.deserializeHashMap();
 		this.running = true;
 	}
+	protected TargetDataLine objFactory() throws LineUnavailableException {
+		DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormat);
+		return (TargetDataLine)AudioSystem.getLine(info);
 
+	}
 	// Method used to acquire audio from the microphone and to add/match a song fragment
 	public void listening(String songId, boolean isMatching) throws LineUnavailableException {
-
-		// Fill AudioFormat with the recording we want for settings
-		AudioFormat audioFormat = new AudioFormat(AudioParams.sampleRate,
-				AudioParams.sampleSizeInBits, AudioParams.channels,
-				AudioParams.signed, AudioParams.bigEndian);
-
-		// Required to get audio directly from the microphone and process it as an 
-		// InputStream (using TargetDataLine) in another thread      
-		DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormat);
-		final TargetDataLine line = (TargetDataLine) AudioSystem.getLine(info);
+			this.running = true;
+			TargetDataLine line = objFactory();
 			line.open(audioFormat);
 			line.start();
 
@@ -101,16 +103,16 @@ public class AudioRecognizer {
 
 		System.out.println("Press ENTER key to stop listening...");
 		try {
-			Thread.sleep(20000);
+			Thread.sleep(2000);
 		} catch (InterruptedException ex) {
 			Logger.getLogger(AudioRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		this.running = false;
+		line.close();
 	}   
 
 	// Determine the shazam action (add or matching a song) and perform it 
 	private void shazamAction(double[][] magnitudeSpectrum, String songId, boolean isMatching) {
-
 		// Hash table used for matching (Map<songId, Map<offset,count>>)
 		Map<String, Map<Integer,Integer>> matchMap = 
 				new HashMap<String, Map<Integer,Integer>>(); 

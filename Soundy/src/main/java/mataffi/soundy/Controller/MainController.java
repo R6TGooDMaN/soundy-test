@@ -30,8 +30,7 @@ public class MainController {
     }
 
     @GetMapping("/add")
-    public String addNewSong(Model model){
-        model.addAttribute("name",new String());
+    public String addNewSong(){
         return "AdditionPage";
     }
     @PostMapping ("/add")
