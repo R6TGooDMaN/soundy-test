@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -66,7 +67,8 @@ public class AudioRecognizer {
 
 			@Override
 			public void run() {
-				// Output stream 
+				// Output stream
+
 				ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 				// Reader buffer
 				byte[] buffer = new byte[AudioParams.bufferSize];               
@@ -97,14 +99,14 @@ public class AudioRecognizer {
 				}
 			}
 		});
-
 		// Start listening
 		listeningThread.start();
 
-		System.out.println("Press ENTER key to stop listening...");
+//		System.out.println("Press ENTER key to stop listening...");
 		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException ex) {
+			//TimeUnit.SECONDS.sleep(15);
+			System.in.read();
+		} catch (IOException ex) {
 			Logger.getLogger(AudioRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		this.running = false;
