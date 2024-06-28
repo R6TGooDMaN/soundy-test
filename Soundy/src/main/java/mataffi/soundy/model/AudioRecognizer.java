@@ -38,6 +38,7 @@ public class AudioRecognizer {
 
 	// The main hashtable required in our interpretation of the algorithm to
 	// store the song repository
+
 	private Map<Long, List<KeyPoint>> hashMapSongRepository;
 
 	// Variable to stop/start the listening loop
