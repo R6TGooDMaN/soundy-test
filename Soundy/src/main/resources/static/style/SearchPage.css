@@ -3,7 +3,7 @@ html{
     flex-direction: column;
     justify-content: center;
     scroll-behavior: smooth;
-height: 100%;
+    height: 100%;
 }
 
 body{
@@ -11,7 +11,7 @@ body{
     flex-direction: column;
     align-items: center;
     height: 100%;
-    gap: 100px;
+    gap: 250px;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab) no-repeat;
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -79,89 +79,20 @@ li a{
 }
 
 
-
-.logo2{
-    margin: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-height: 300px;
-    gap: 30px;
-}
-
-#beta{
+#form{
     margin-left: auto;
     margin-right: auto;
 }
 
-#try{
-    margin-left: auto;
-    margin-right: auto;
+#song{
+   text-align: center;
 }
 
-#about{
-    width: 100%;
-    padding-top: 15px;
-    padding-bottom:15px ;
-}
-
-#sponsors{
-
-    width: 100%;
-}
 
 footer{
     background-color: #545355;
     min-height: 200px;
     width: 100%;
-}
-
-#about{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    flex-shrink: 2;
-    align-items: center;
-    gap: 20px;
-}
-
-.title{
-    color: white; font-size: 40px;
-    font-family: Josefin Sans;
-    font-weight: 500;
-    word-wrap: break-word
-}
-
-.discr{
-    color: white; font-size: 30px;
-    font-family: Josefin Sans;
-    font-weight: 500;
-    word-wrap: break-word
-}
-
-#sponsors{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 15px;
-    align-items: center;
-    gap:20px;
-}
-
-
-.spon{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    gap:100px;
-}
-
-@media screen and (max-width: 1200px) {
-    .spon{
-        flex-direction: column;
-    }
-
 }
 
 footer{
@@ -175,6 +106,7 @@ footer{
 @media screen and (max-width: 500px) {
     footer{
         flex-direction: column;
+        min-height: 350px;
     }
 
 }
@@ -203,4 +135,16 @@ footer{
 .social-con a{
     text-decoration: none;
     padding: 0;
+}
+
+span{
+    font-family: "Josefin Sans";
+    font-size: 30px;
+    color:#E4CDFB;
+}
+
+.matching{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }

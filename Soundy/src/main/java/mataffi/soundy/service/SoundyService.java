@@ -10,18 +10,23 @@ import javax.sound.sampled.LineUnavailableException;
 @Service
 @AllArgsConstructor
 public class SoundyService {
-
     AudioRecognizer audioRecognizer;
+
     public String recognizeSound() throws LineUnavailableException {
         audioRecognizer.listening("",true);
         try {
             Thread.sleep(1000);
         }
         catch (InterruptedException ex) {}
-        return audioRecognizer.bestSong;
+        return audioRecognizer.getBestSong();
     }
+
     public String addSound(String name) throws LineUnavailableException {
         audioRecognizer.listening(name,false);
         return "Song added: " + name;
+    }
+
+    public void stopListening()  {
+        audioRecognizer.stopListening();
     }
 }

@@ -1,6 +1,7 @@
 package mataffi.soundy.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mataffi.soundy.config.AudioParams;
 import mataffi.soundy.config.KeyPoint;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -41,9 +41,13 @@ public class AudioRecognizer {
 	private Map<Long, List<KeyPoint>> hashMapSongRepository;
 
 	// Variable to stop/start the listening loop
-	public boolean running;
+	@Getter
+	private boolean running;
 
-	public String bestSong;
+	@Getter
+	private String bestSong;
+
+	private TargetDataLine line;
 
 	// Constructor
 	public AudioRecognizer() {
@@ -51,15 +55,23 @@ public class AudioRecognizer {
 		this.hashMapSongRepository = Serialization.deserializeHashMap();
 		this.running = true;
 	}
+
+	public void stopListening(){
+		if(line==null || !line.isRunning()) return;
+		this.running = false;
+		line.close();
+	}
+
 	protected TargetDataLine objFactory() throws LineUnavailableException {
 		DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormat);
 		return (TargetDataLine)AudioSystem.getLine(info);
 
 	}
+
 	// Method used to acquire audio from the microphone and to add/match a song fragment
 	public void listening(String songId, boolean isMatching) throws LineUnavailableException {
 			this.running = true;
-			TargetDataLine line = objFactory();
+			line = objFactory();
 			line.open(audioFormat);
 			line.start();
 
@@ -67,8 +79,7 @@ public class AudioRecognizer {
 
 			@Override
 			public void run() {
-				// Output stream
-
+				// Output stream 
 				ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 				// Reader buffer
 				byte[] buffer = new byte[AudioParams.bufferSize];               
@@ -99,14 +110,14 @@ public class AudioRecognizer {
 				}
 			}
 		});
+
 		// Start listening
 		listeningThread.start();
 
-//		System.out.println("Press ENTER key to stop listening...");
+		System.out.println("Press ENTER key to stop listening...");
 		try {
-			//TimeUnit.SECONDS.sleep(15);
-			System.in.read();
-		} catch (IOException ex) {
+			Thread.sleep(15000);
+		} catch (InterruptedException ex) {
 			Logger.getLogger(AudioRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		this.running = false;
@@ -218,8 +229,9 @@ public class AudioRecognizer {
 
 	// Method to find the songId with the most frequently/repeated time offset
 	private void showBestMatching(Map<String, Map<Integer, Integer>> matchMap) {
-		String song, bestSong = null;
-		int offset, counter, bestCounter = 0;
+		String song;
+		bestSong = null;
+		int offset, counter, bestCounter = 4;
 		// Iterate over the songs in the hashtable used for matching (matchMap)
 		Iterator songIterator = matchMap.entrySet().iterator();
 		while(songIterator.hasNext()) {
@@ -240,7 +252,7 @@ public class AudioRecognizer {
 				if(counter > bestCounter) {
 					//We saving the possible best song
 					bestCounter = counter;
-					this.bestSong=bestSong = song;
+					this.bestSong = song;
 				}
 			}
 		}

@@ -11,6 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 @Controller
 @RequestMapping("/Soundy")
 @AllArgsConstructor
+@SessionAttributes(value = "song")
 public class MainController {
     SoundyService service;
 
@@ -23,20 +24,23 @@ public class MainController {
     public String matchingSong(){
         return "SearchPage";
     }
+
     @PostMapping("/matching")
     public String recognizeSound(Model model) throws LineUnavailableException {
+        service.stopListening();
         model.addAttribute("song",service.recognizeSound());
-        return "SearchPage";
+        return "redirect:/Soundy/matching";
     }
 
-//    @GetMapping("/add")
-//    public String addNewSong(){
-//        return "AdditionPage";
-//    }
     @PostMapping ("/add")
     @ResponseBody
     public String addSound(@RequestParam String title) throws LineUnavailableException{
         return service.addSound(title);
+    }
+
+    @ModelAttribute("song")
+    public String Song(){
+        return null;
     }
 }
 
