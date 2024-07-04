@@ -1,8 +1,7 @@
 package mataffi.soundy.utilities;
 
 public class HashingFunctions {
-    
-     // Example of hash1 function
+
     public static long hash1(int p1, int p2, int p3, int p4, int fuzzFactor) {
         
         return (p4 - (p4 % fuzzFactor)) * 100000000

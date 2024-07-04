@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7230cd36-9d35-4599-a77c-3a8138e58221" name="Changes" comment="Project" />
+    <list default="true" id="7230cd36-9d35-4599-a77c-3a8138e58221" name="Changes" comment="Project">
+      <change beforePath="$PROJECT_DIR$/Soundy/serialized/hashmap.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/serialized/hashmap.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/model/AudioRecognizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/model/AudioRecognizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Complex.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Complex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/FFT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/FFT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/HashingFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/HashingFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Serialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Serialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Spectrum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/java/mataffi/soundy/utilities/Spectrum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/resources/static/style/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/resources/static/style/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soundy/src/main/resources/templates/SearchPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Soundy/src/main/resources/templates/SearchPage.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,20 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dima&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Downloads/Java-Shazam-master/Java-Shazam-master/Soundy&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Nikita",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Downloads/Java-Shazam-master/Java-Shazam-master/Soundy",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -55,6 +65,7 @@
       <updated>1719070604507</updated>
       <workItem from="1719070606189" duration="413000" />
       <workItem from="1719403095632" duration="17000" />
+      <workItem from="1720089807228" duration="24000" />
     </task>
     <servers />
   </component>

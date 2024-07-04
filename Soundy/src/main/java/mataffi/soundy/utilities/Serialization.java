@@ -16,8 +16,6 @@ import java.util.Map;
 
 public class Serialization {
 
-    // The serialized <songId,keypoints> hash table is inside the "serialized" 
-    // directory in a file called "hashmap.ser" 
     public static void serializeHashMap(Map<Long, List<KeyPoint>> hashMap) {
         
         try {
